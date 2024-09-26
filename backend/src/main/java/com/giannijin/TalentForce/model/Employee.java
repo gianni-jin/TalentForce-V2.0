@@ -2,6 +2,7 @@ package com.giannijin.TalentForce.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -10,7 +11,7 @@ import lombok.*;
 
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
+        property = "employeeId")
 @Entity
 @Table(name = "tbl_employee")
 @Getter
@@ -21,8 +22,9 @@ import lombok.*;
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name = "id")
-    private Long id;
+    @JsonProperty("employeeId")
+    @Column (name = "employeeId")
+    private Long employeeId;
 
 
     @NotBlank(message = "first name should not be null")

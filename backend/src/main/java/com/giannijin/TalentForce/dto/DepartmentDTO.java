@@ -10,7 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DepartmentDTO {
-    private Long id;
+    private Long departmentId;
     private String name;
     private List<Long> employeeIds;
 

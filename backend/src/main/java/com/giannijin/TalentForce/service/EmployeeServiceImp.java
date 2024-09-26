@@ -27,9 +27,9 @@ public class EmployeeServiceImp implements EmployeeService{
 
     @Override
     public Employee saveEmployee(Employee employee) {
-        if (employee.getId() != null) {
-            if (employeeRepository.existsById(employee.getId())) {
-                throw new EntityExistsException("Employee already exists with this id :: " + employee.getId());
+        if (employee.getEmployeeId() != null) {
+            if (employeeRepository.existsById(employee.getEmployeeId())) {
+                throw new EntityExistsException("Employee already exists with this id :: " + employee.getEmployeeId());
             }
         }
         return employeeRepository.save(employee);
@@ -49,7 +49,7 @@ public class EmployeeServiceImp implements EmployeeService{
 
     @Override
     public Employee updateEmployee(Employee employee) {
-        if (employee.getId() == null || !employeeRepository.existsById(employee.getId())) {
+        if (employee.getEmployeeId() == null || !employeeRepository.existsById(employee.getEmployeeId())) {
             throw new IllegalArgumentException("Employee id must not be null and should exist");
         }
         return employeeRepository.save(employee);

@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/v1/employees")
 public class EmployeeApiController {
 
@@ -30,15 +30,15 @@ public class EmployeeApiController {
 
     private DepartmentDTO mapToDTO(Department department) {
         DepartmentDTO dto = new DepartmentDTO();
-        dto.setId(department.getId());
+        dto.setDepartmentId(department.getDepartmentId());
         dto.setName(department.getName());
-        dto.setEmployeeIds(department.getEmployees().stream().map(Employee::getId).collect(Collectors.toList()));
+        dto.setEmployeeIds(department.getEmployees().stream().map(Employee::getEmployeeId).collect(Collectors.toList()));
         return dto;
     }
 
     private EmployeeDTO mapEmployeeToDTO(Employee employee) {
         EmployeeDTO dto = new EmployeeDTO();
-        dto.setId(employee.getId());
+        dto.setEmployeeId(employee.getEmployeeId());
         dto.setFirstName(employee.getFirstName());
         dto.setLastName(employee.getLastName());
         dto.setAge(employee.getAge());
@@ -70,7 +70,7 @@ public class EmployeeApiController {
 
     @PostMapping
     public ResponseEntity<Employee> saveEmployee (@Valid @RequestBody Employee employee){
-        Long departmentId = employee.getDepartment().getId();
+        Long departmentId = employee.getDepartment().getDepartmentId();
         String departmentName = employee.getDepartment().getName();
 
         Department department = departmentRepository.findById(departmentId)
@@ -91,8 +91,8 @@ public class EmployeeApiController {
         Employee employee = employeeRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id :" + id));
 
-        Department department = departmentRepository.findById(employeeDetails.getDepartment().getId())
-                .orElseThrow(() -> new ResourceNotFoundException("Department not exist with id :" + employeeDetails.getDepartment().getId()));
+        Department department = departmentRepository.findById(employeeDetails.getDepartment().getDepartmentId())
+                .orElseThrow(() -> new ResourceNotFoundException("Department not exist with id :" + employeeDetails.getDepartment().getDepartmentId()));
 
         employee.setFirstName(employeeDetails.getFirstName());
         employee.setLastName(employeeDetails.getLastName());

@@ -39,7 +39,7 @@ public void deleteDepartment(Long id){
     List<Employee> employees = department.getEmployees();
 
     for (Employee employee : employees) {
-        employeeService.deleteEmployee(employee.getId());
+        employeeService.deleteEmployee(employee.getEmployeeId());
     }
 
     departmentRepository.deleteById(id);
@@ -47,8 +47,8 @@ public void deleteDepartment(Long id){
 
 @Override
     public Department saveDepartment(Department department) {
-        if (department.getId() != null && departmentRepository.existsById(department.getId())) {
-            throw new EntityExistsException("Department with id " + department.getId() + " already exists");
+        if (department.getDepartmentId() != null && departmentRepository.existsById(department.getDepartmentId())) {
+            throw new EntityExistsException("Department with id " + department.getDepartmentId() + " already exists");
         }
         return departmentRepository.save(department);
     }
@@ -56,7 +56,7 @@ public void deleteDepartment(Long id){
 
     @Override
     public Department updateDepartment(Department department) {
-        if (department.getId() == null || !departmentRepository.existsById(department.getId())) {
+        if (department.getDepartmentId() == null || !departmentRepository.existsById(department.getDepartmentId())) {
             throw new IllegalArgumentException("Department id must not be null and should exist");
         }
         return departmentRepository.save(department);

@@ -1,6 +1,7 @@
 package com.giannijin.TalentForce.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.*;
@@ -15,14 +16,15 @@ import java.util.List;
 @AllArgsConstructor
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
+        property = "departmentId")
 @Table(name = "tbl_departments")
 public class Department {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name = "id")
-    @Getter @Setter private Long id;
+    @JsonProperty("departmentId")
+    @Column (name = "departmentId")
+    @Getter @Setter private Long departmentId;
 
 
     @Column (name = "name")

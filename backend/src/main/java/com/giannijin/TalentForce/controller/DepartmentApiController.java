@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/v1/departments")
 public class DepartmentApiController {
 
@@ -25,9 +26,9 @@ public class DepartmentApiController {
 
     private DepartmentDTO mapToDTO(Department department) {
         DepartmentDTO dto = new DepartmentDTO();
-        dto.setId(department.getId());
+        dto.setDepartmentId(department.getDepartmentId());
         dto.setName(department.getName());
-        dto.setEmployeeIds(department.getEmployees().stream().map(Employee::getId).collect(Collectors.toList()));
+        dto.setEmployeeIds(department.getEmployees().stream().map(Employee::getEmployeeId).collect(Collectors.toList()));
         return dto;
     }
 
@@ -51,7 +52,7 @@ public class DepartmentApiController {
         List<Employee> employees = department.getEmployees();
 
         for (Employee employee : employees) {
-            employeeService.deleteEmployee(employee.getId());
+            employeeService.deleteEmployee(employee.getEmployeeId());
         }
 
         departmentService.deleteDepartment(id);
