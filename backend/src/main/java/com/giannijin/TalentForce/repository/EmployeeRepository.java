@@ -28,6 +28,11 @@ public interface EmployeeRepository extends JpaRepository <Employee, Long> {
     @Query("SELECT e FROM Employee e WHERE e.department IS NULL")
     List<Employee> findByDepartmentIsNull();
 
-    @Query("SELECT e FROM Employee e WHERE e.department.id != :id OR e.department IS NULL")
+    @Query("SELECT e FROM Employee e WHERE e.department.departmentId != :id OR e.department IS NULL")
     List<Employee> findByDepartmentIdNot(@Param("id") Long id);
+
+    @Query("SELECT e FROM Employee e WHERE e.department.departmentId = :departmentId")
+    List<Employee> findEmployeesByDepartmentId(@Param("departmentId") Long departmentId);
+
+
 }

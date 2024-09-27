@@ -99,6 +99,7 @@ updateEmployee(employeeId: number): void {
 
 
 
+
   deleteEmployee(employeeId: number): void {
     this.employeeService.deleteEmployee(employeeId).subscribe(
       () => {

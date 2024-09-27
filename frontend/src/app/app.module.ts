@@ -6,9 +6,11 @@ import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { DepartmentListComponent } from './department-list/department-list.component';
-import { EmployeeFormComponent } from './employee-form/employee-form.component';  // Corrected import
+import { EmployeeFormComponent } from './employee-form/employee-form.component';  
 import { RouterModule } from '@angular/router';
-import { DepartmentFormComponent } from './department-form/department-form.component';  // Ensure RouterModule is imported
+import { DepartmentFormComponent } from './department-form/department-form.component'; 
+import { DepartmentService } from './department.service';
+import { EmployeeService } from './employee.service'
 
 
 
@@ -18,16 +20,16 @@ import { DepartmentFormComponent } from './department-form/department-form.compo
     EmployeeListComponent,
     DepartmentListComponent,
     EmployeeFormComponent,
-    DepartmentFormComponent // Corrected declaration
+    DepartmentFormComponent 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule, // Import this if you're using HTTP requests
+    HttpClientModule,
     FormsModule,
-    RouterModule         // Add FormsModule here
+    RouterModule        
   ],
-  providers: [],
+  providers: [EmployeeService, DepartmentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

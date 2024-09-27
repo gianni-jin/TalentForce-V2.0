@@ -70,4 +70,12 @@ public class EmployeeServiceImp implements EmployeeService{
     public List<Employee> findEmployeesNotInDepartment() {
         return employeeRepository.findByDepartmentIsNull();
     }
+
+
+    @Override
+    public List<Employee> findEmployeesByDepartmentId(Long departmentId) {
+        return employeeRepository.findEmployeesByDepartmentId(departmentId);
+    }
+
+
 }

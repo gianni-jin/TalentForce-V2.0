@@ -65,7 +65,7 @@ public class DepartmentApiController {
 
         List<Employee> employees = departmentDTO.getEmployeeIds().stream()
                 .map(employeeService::getSingleEmployee)
-                .collect(Collectors.toList());
+                .toList();
 
         employees.forEach(department::addEmployee);
 
@@ -82,12 +82,17 @@ public class DepartmentApiController {
 
         List<Employee> employees = departmentDTO.getEmployeeIds().stream()
                 .map(employeeService::getSingleEmployee)
-                .collect(Collectors.toList());
+                .toList();
 
         employees.forEach(existingDepartment::addEmployee);
 
         Department updatedDepartment = departmentService.updateDepartment(existingDepartment);
 
         return mapToDTO(updatedDepartment);
+    }
+
+    @GetMapping("/{departmentId}/employees")
+    public List<Employee> getEmployeesByDepartment(@PathVariable Long departmentId) {
+        return employeeService.findEmployeesByDepartmentId(departmentId);
     }
 }

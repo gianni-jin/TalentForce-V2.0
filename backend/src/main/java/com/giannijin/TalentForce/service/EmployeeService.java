@@ -21,5 +21,8 @@ public interface EmployeeService {
 
 
     List<Employee> findEmployeesNotInDepartment();
+    List<Employee> findEmployeesByDepartmentId(Long departmentId);
+
+
 }
 

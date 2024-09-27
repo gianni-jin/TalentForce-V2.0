@@ -1,4 +1,3 @@
-// employee-form.component.ts
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeeService } from '../employee.service';
@@ -14,7 +13,7 @@ import { Department } from '../models/department';
 export class EmployeeFormComponent implements OnInit {
   employee: Employee = new Employee();
   departments: Department[] = [];
-  isEditMode: boolean = false; // Flag to determine if we're in edit mode
+  isEditMode: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,11 +30,10 @@ export class EmployeeFormComponent implements OnInit {
       this.getEmployeeById(+employeeId);
     } else {
       this.isEditMode = false;
-      this.employee = new Employee(); // Initialize a new employee
+      this.employee = new Employee();
     }
   }
 
-  // Fetch departments
   getDepartments() {
     this.departmentService.getDepartmentsList().subscribe(
       (data) => {
@@ -47,7 +45,6 @@ export class EmployeeFormComponent implements OnInit {
     );
   }
 
-  // Fetch employee by ID
   getEmployeeById(employeeId: number) {
     this.employeeService.getEmployeeById(employeeId).subscribe(
       (data) => {
@@ -59,7 +56,6 @@ export class EmployeeFormComponent implements OnInit {
     );
   }
 
-  // Handle form submission
   onSubmit(): void {
     if (this.isEditMode) {
       this.updateEmployee();
@@ -67,8 +63,14 @@ export class EmployeeFormComponent implements OnInit {
       this.createEmployee();
     }
   }
-
-  // Create new employee
+  viewEmployees(): void {
+    if (this.employee.department && this.employee.department.departmentId) {
+      this.router.navigate([`/departments/${this.employee.department.departmentId}/employees`]);
+    } else {
+      console.error('Department ID is undefined or null');
+    }
+  }
+  
   createEmployee() {
     this.employeeService.createEmployee(this.employee).subscribe(
       (data) => {
@@ -81,7 +83,6 @@ export class EmployeeFormComponent implements OnInit {
     );
   }
 
-  // Update existing employee
   updateEmployee() {
     if (this.employee.employeeId !== undefined && this.employee.employeeId !== null) {
       this.employeeService.updateEmployee(this.employee.employeeId, this.employee).subscribe(
@@ -98,7 +99,6 @@ export class EmployeeFormComponent implements OnInit {
     }
   }
 
-  // Delete employee
   onDelete(): void {
     if (this.employee.employeeId !== undefined && this.employee.employeeId !== null) {
       if (confirm('Are you sure you want to delete this employee?')) {

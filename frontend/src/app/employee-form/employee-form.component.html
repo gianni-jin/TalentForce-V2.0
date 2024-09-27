@@ -162,6 +162,34 @@
                   Delete
                 </button>
               </div>
+              <div class="d-flex justify-content-between">
+                <button
+                  type="submit"
+                  class="btn btn-success"
+                  [disabled]="employeeForm.invalid"
+                >
+                  {{ isEditMode ? 'Update' : 'Create' }}
+                </button>
+              
+                <button
+                  *ngIf="isEditMode"
+                  type="button"
+                  class="btn btn-danger"
+                  (click)="onDelete()"
+                >
+                  Delete
+                </button>
+              
+                <button
+                  *ngIf="employee.department.departmentId"
+                  type="button"
+                  class="btn btn-info"
+                  (click)="viewEmployees()"
+                >
+                  View Employees
+                </button>
+              </div>
+              
             </form>
           </div>
         </div>

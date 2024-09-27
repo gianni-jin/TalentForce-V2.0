@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Department } from '../models/department';  // Adjust the path if needed
-import { DepartmentService } from '../department.service';  // Adjust the path if needed
-import { Router } from '@angular/router';  // Import Router to navigate
+import { Department } from '../models/department';  
+import { DepartmentService } from '../department.service';  
+import { Router } from '@angular/router';  
 
 @Component({
   selector: 'app-department-list',
@@ -9,15 +9,14 @@ import { Router } from '@angular/router';  // Import Router to navigate
   styleUrls: ['./department-list.component.css']
 })
 export class DepartmentListComponent implements OnInit {
-  departments: Department[] = [];  // List of departments
+  departments: Department[] = [];  
 
   constructor(private departmentService: DepartmentService, private router: Router) {}
 
   ngOnInit(): void {
-    this.getDepartments();  // Fetch the list of departments on component initialization
+    this.getDepartments(); 
   }
 
-  // Fetch departments from the backend
   getDepartments(): void {
     this.departmentService.getDepartmentsList().subscribe(
       (data) => {
@@ -30,12 +29,11 @@ export class DepartmentListComponent implements OnInit {
     );
   }
 
-  // Delete a department
   deleteDepartment(departmentId: number): void {
     if (confirm('Are you sure you want to delete this department?')) {
       this.departmentService.deleteDepartment(departmentId).subscribe(
         () => {
-          this.departments = this.departments.filter(dept => dept.departmentId !== departmentId);  // Remove the deleted department from the list
+          this.departments = this.departments.filter(dept => dept.departmentId !== departmentId); 
           console.log('Department deleted');
         },
         (error) => {
@@ -45,8 +43,15 @@ export class DepartmentListComponent implements OnInit {
     }
   }
 
-  // Update a department by navigating to the form with the department ID
   updateDepartment(departmentId: number): void {
-    this.router.navigate([`/department-form`, departmentId]);  // Navigate to the update form
+    this.router.navigate([`/department-form`, departmentId]);  
+  }
+
+  viewEmployeesByDepartment(departmentId: number): void {
+    if (departmentId) {
+      this.router.navigate([`/departments/${departmentId}/employees`]);
+    } else {
+      console.error('No department ID found for this employee');
+    }
   }
 }

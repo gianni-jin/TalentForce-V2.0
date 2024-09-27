@@ -1,7 +1,7 @@
 import { Department } from "./department";
 
 export class Employee {
-    employeeId!: number;  // Definite assignment assertion
+    employeeId!: number;  
     firstName: string = '';
     lastName: string = '';
     age: number = 18;

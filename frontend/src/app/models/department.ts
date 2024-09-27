@@ -1,5 +1,5 @@
 export class Department {
-    departmentId!: number;  // departmentId is optional because it will be set by the backend
+    departmentId!: number; 
     name: string = '';
     employeeIds: number[] = [];
 }
