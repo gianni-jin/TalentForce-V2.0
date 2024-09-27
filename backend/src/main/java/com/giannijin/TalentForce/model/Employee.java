@@ -9,9 +9,9 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.*;
 
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "employeeId")
+//@JsonIdentityInfo(
+//        generator = ObjectIdGenerators.PropertyGenerator.class,
+//       property = "employeeId")
 @Entity
 @Table(name = "tbl_employee")
 @Getter
@@ -51,7 +51,7 @@ public class Employee {
     private String email;
 
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+    @ManyToOne
     @JoinColumn(name = "department_id")
     private Department department;
     public void setDepartment(Department department) {
