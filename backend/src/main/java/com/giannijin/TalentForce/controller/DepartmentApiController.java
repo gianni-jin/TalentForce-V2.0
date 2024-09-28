@@ -31,6 +31,10 @@ public class DepartmentApiController {
         dto.setEmployeeIds(department.getEmployees().stream().map(Employee::getEmployeeId).collect(Collectors.toList()));
         return dto;
     }
+    @GetMapping("/{departmentId}/employees")
+    public List<Employee> getEmployeesByDepartment(@PathVariable Long departmentId) {
+        return employeeService.findEmployeesByDepartmentId(departmentId);
+    }
 
     @GetMapping
     public List<DepartmentDTO> getDepartments(){
@@ -91,8 +95,5 @@ public class DepartmentApiController {
         return mapToDTO(updatedDepartment);
     }
 
-    @GetMapping("/{departmentId}/employees")
-    public List<Employee> getEmployeesByDepartment(@PathVariable Long departmentId) {
-        return employeeService.findEmployeesByDepartmentId(departmentId);
-    }
+
 }

@@ -11,7 +11,8 @@ import { RouterModule } from '@angular/router';
 import { DepartmentFormComponent } from './department-form/department-form.component'; 
 import { DepartmentService } from './department.service';
 import { EmployeeService } from './employee.service'
-
+import { CommonModule } from '@angular/common';
+import { DepartmentEmployeesComponent } from './department-employees/department-employees.component'
 
 
 @NgModule({
@@ -20,14 +21,16 @@ import { EmployeeService } from './employee.service'
     EmployeeListComponent,
     DepartmentListComponent,
     EmployeeFormComponent,
-    DepartmentFormComponent 
+    DepartmentFormComponent, 
+    DepartmentEmployeesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    RouterModule        
+    RouterModule,
+    CommonModule        
   ],
   providers: [EmployeeService, DepartmentService],
   bootstrap: [AppComponent]

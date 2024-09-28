@@ -42,7 +42,4 @@ export class EmployeeService {
   getEmployeeByLastNameAndLocation(lastName: string, location: string): Observable<Employee[]> {
     return this.httpClient.get<Employee[]>(`${this.baseURL}/filterbyLastNameAndLocation?lastName=${lastName}&location=${location}`);
   }
-  getEmployeesByDepartment(departmentId: number): Observable<Employee[]> {
-    return this.httpClient.get<Employee[]>(`${this.baseURL}/departments/${departmentId}/employees`);
-  }
 }

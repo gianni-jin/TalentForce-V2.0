@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Department } from './models/department';
+import { Employee } from './models/employee';
 
 @Injectable({
   providedIn: 'root'
@@ -31,4 +32,9 @@ export class DepartmentService {
   deleteDepartment(departmentId: number): Observable<Object> {
     return this.httpClient.delete(`${this.baseURL}/${departmentId}`);
   }
+
+  getEmployeesByDepartment(departmentId: number): Observable<Employee[]> {
+    return this.httpClient.get<Employee[]>(`${this.baseURL}/${departmentId}/employees`);
+  }
+
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EmployeeService } from '../employee.service';
 import { Employee } from '../models/employee';
+import { DepartmentService } from '../department.service';
 
 @Component({
   selector: 'app-department-employees',
@@ -15,7 +16,8 @@ export class DepartmentEmployeesComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private employeeService: EmployeeService
+    private employeeService: EmployeeService,
+    private departmentService: DepartmentService
   ) { }
 
   ngOnInit(): void {
@@ -24,7 +26,7 @@ export class DepartmentEmployeesComponent implements OnInit {
   }
 
   getEmployeesByDepartment(departmentId: number): void {
-    this.employeeService.getEmployeesByDepartment(departmentId).subscribe(
+    this.departmentService.getEmployeesByDepartment(departmentId).subscribe(
       (data) => {
         this.employees = data;
       },
