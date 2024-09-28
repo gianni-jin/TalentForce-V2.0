@@ -4,7 +4,6 @@ import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { DepartmentListComponent } from './department-list/department-list.component'; 
 import { EmployeeFormComponent } from './employee-form/employee-form.component';
 import { DepartmentFormComponent } from './department-form/department-form.component';
-import { DepartmentEmployeesComponent } from './department-employees/department-employees.component'
 
 const routes: Routes = [
   { path: 'employees', component: EmployeeListComponent },
@@ -13,7 +12,7 @@ const routes: Routes = [
   { path: 'employee-form/:employeeId', component: EmployeeFormComponent },
   { path: 'department-form', component: DepartmentFormComponent }, 
   { path: 'department-form/:departmentId', component: DepartmentFormComponent },
-  { path: 'departments/:departmentId/employees', component: DepartmentEmployeesComponent },
+  { path: 'departments/:departmentId/employees', component: EmployeeListComponent },
   { path: '', redirectTo: '/employees', pathMatch: 'full' }, 
   { path: '**', redirectTo: '/employees', pathMatch: 'full' }
 ];

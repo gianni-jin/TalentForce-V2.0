@@ -12,7 +12,6 @@ import { DepartmentFormComponent } from './department-form/department-form.compo
 import { DepartmentService } from './department.service';
 import { EmployeeService } from './employee.service'
 import { CommonModule } from '@angular/common';
-import { DepartmentEmployeesComponent } from './department-employees/department-employees.component'
 
 
 @NgModule({
@@ -21,9 +20,8 @@ import { DepartmentEmployeesComponent } from './department-employees/department-
     EmployeeListComponent,
     DepartmentListComponent,
     EmployeeFormComponent,
-    DepartmentFormComponent, 
-    DepartmentEmployeesComponent
-  ],
+    DepartmentFormComponent
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,

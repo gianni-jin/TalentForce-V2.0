@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../employee.service'; 
 import { Employee } from '../models/employee'; 
 import { Router } from '@angular/router'; 
+import { ActivatedRoute } from '@angular/router';
+import { DepartmentService } from '../department.service'
 
 @Component({
   selector: 'app-employee-list',
@@ -17,12 +19,32 @@ export class EmployeeListComponent implements OnInit {
 
   searchResults: Employee[] = []; 
 
-  constructor(private employeeService: EmployeeService, private router: Router) {}
+  constructor(private employeeService: EmployeeService,
+    private departmentService: DepartmentService,
+    private router: Router,
+    private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.getEmployees(); 
+    const departmentId = this.route.snapshot.paramMap.get('departmentId');
+    if (departmentId) {
+      this.getEmployeesByDepartment(+departmentId);
+    } else {
+      this.getEmployees();
+    }
   }
 
+  getEmployeesByDepartment(departmentId: number): void {
+    this.departmentService.getEmployeesByDepartment(departmentId).subscribe(
+      (data) => {
+        this.employees = data;
+      },
+      (error) => {
+        console.error('Error fetching employees for department:', error);
+      }
+    );
+  }
+
+  
   // Fetch all employees
   getEmployees(): void {
     this.employeeService.getEmployeesList().subscribe(
