@@ -1,0 +1,85 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+  }
+
+  .container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 20px;
+  }
+
+  .card {
+    border-radius: 20px;
+    background-color: #fff;
+    width: 100%; 
+    max-width: 700px; 
+  }
+
+  .card-header {
+    padding: 15px;
+    background-color: #0061f2;
+  }
+
+  .card-header h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0;
+  }
+
+  .form-control {
+    height: 45px;
+    font-size: 16px;
+    width: 100%;
+  }
+
+  .form-label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+  }
+
+  .btn {
+    transition: all 0.3s ease;
+    padding: 10px 0;
+    font-size: 14px;
+  }
+
+  .btn-success {
+    background-color: #28a745;
+    border: none;
+    padding: 10px 20px;
+  }
+
+  .btn-success:hover {
+    background-color: #218838;
+  }
+
+  .bg-gradient-primary {
+    background: linear-gradient(90deg, #0061f2, #00b5e2);
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      align-items: center;
+      margin-top: 0;
+    }
+
+    .card {
+      max-width: 100%;
+    }
+
+    .form-control {
+      font-size: 12px;
+    }
+
+    .form-label {
+      font-size: 14px;
+    }
+
+    .btn {
+      font-size: 12px;
+      padding: 8px;
+    }
+  }

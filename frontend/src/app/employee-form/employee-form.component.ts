@@ -63,13 +63,6 @@ export class EmployeeFormComponent implements OnInit {
       this.createEmployee();
     }
   }
-  viewEmployees(): void {
-    if (this.employee.department && this.employee.department.departmentId) {
-      this.router.navigate([`/departments/${this.employee.department.departmentId}/employees`]);
-    } else {
-      console.error('Department ID is undefined or null');
-    }
-  }
   
   createEmployee() {
     this.employeeService.createEmployee(this.employee).subscribe(
