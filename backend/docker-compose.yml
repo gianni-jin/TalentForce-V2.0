@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  talentforce:
+    container_name: talentforcecontainer
+    image: talentforce:latest
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    env_file:
+      - .env
+    expose:
+      - ${CONTAINER_PORT}
+    ports:
+      - "${HOST_PORT}:${CONTAINER_PORT}"
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:5.7
+    container_name: mysqlcontainer
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:
