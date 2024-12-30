@@ -1,8 +1,5 @@
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
-
 <div class="container mt-5">
-  <div class="row justify-content-center" style="width: 60%;"> 
+  <div class="row justify-content-center" style="width: 60%;">
     <div class="col-lg-20 col-md-20 col-sm-20">
       <div class="card shadow-lg rounded border-0" style="width: 100%;">
         <div class="card-header bg-gradient-primary text-white text-center" style="background: linear-gradient(90deg, #0061f2, #00b5e2);">
@@ -38,6 +35,7 @@
               </div>
             </div>
 
+
             <div class="form-group mb-3">
               <label for="gender" class="form-label">Gender</label>
               <select class="form-control" id="gender" [(ngModel)]="employee.gender" name="gender" required #gender="ngModel">
@@ -50,19 +48,94 @@
 
             <div class="form-group mb-3">
               <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" [(ngModel)]="employee.email" name="email" placeholder="Enter email" required #email="ngModel">
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                [(ngModel)]="employee.email"
+                name="email"
+                placeholder="Enter email"
+                required
+                pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                #email="ngModel"
+              />
               <div *ngIf="email.invalid && email.touched" class="text-danger">
                 <small *ngIf="email.errors?.['required']">Email is required.</small>
                 <small *ngIf="email.errors?.['email']">Please enter a valid email address.</small>
+                <small *ngIf="email.errors?.['pattern']">The email format is invalid.</small>
               </div>
             </div>
-
+                        <div class="form-group mb-3">
+              <label for="phoneNumber" class="form-label">Phone Number</label>
+              <input
+                type="text"
+                class="form-control"
+                id="phoneNumber"
+                [(ngModel)]="employee.phoneNumber"
+                name="phoneNumber"
+                placeholder="Enter phone number"
+                required
+                pattern="^\+?[0-9]{7,15}$"
+                #phoneNumber="ngModel"
+              />
+              <div *ngIf="phoneNumber.invalid && phoneNumber.touched" class="text-danger">
+                <small *ngIf="phoneNumber.errors?.['required']">Phone Number is required.</small>
+                <small *ngIf="phoneNumber.errors?.['pattern']">Enter a valid phone number.</small>
+              </div>
+            </div>
+            
             <div class="form-group mb-3">
               <label for="location" class="form-label">Location</label>
               <input type="text" class="form-control" id="location" [(ngModel)]="employee.location" name="location" placeholder="Enter location" required #location="ngModel">
               <div *ngIf="location.invalid && location.touched" class="text-danger">Location is required.</div>
             </div>
 
+            <div class="form-group mb-3">
+              <label for="salary" class="form-label">Salary</label>
+              <input type="number" class="form-control" id="salary" [(ngModel)]="employee.salary" name="salary" placeholder="Enter salary" min="0">
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="hireDate" class="form-label">Hire Date</label>
+              <input type="date" class="form-control" id="hireDate" [(ngModel)]="employee.hireDate" name="hireDate" placeholder="Select hire date">
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="contractType" class="form-label">Contract Type</label>
+              <select
+                class="form-control"
+                id="contractType"
+                [(ngModel)]="employee.contractType"
+                name="contractType"
+                required
+                #contractType="ngModel"
+              >
+                <option value="" disabled>Select Contract Type</option>
+                <option *ngFor="let type of contractTypes" [value]="type">{{ type }}</option>
+              </select>
+              <div *ngIf="contractType.invalid && contractType.touched" class="text-danger">
+                Contract Type is required.
+              </div>
+            </div>
+            
+            <div class="form-group mb-3">
+              <label for="employmentStatus" class="form-label">Employment Status</label>
+              <select
+                class="form-control"
+                id="employmentStatus"
+                [(ngModel)]="employee.employmentStatus"
+                name="employmentStatus"
+                required
+                #employmentStatus="ngModel"
+              >
+                <option value="" disabled>Select Employment Status</option>
+                <option *ngFor="let status of employmentStatuses" [value]="status">{{ status }}</option>
+              </select>
+              <div *ngIf="employmentStatus.invalid && employmentStatus.touched" class="text-danger">
+                Employment Status is required.
+              </div>
+            </div>
+            
             <div class="form-group mb-3">
               <label for="department" class="form-label">Department</label>
               <select class="form-control" id="department" [(ngModel)]="employee.department.departmentId" name="departmentId" required #department="ngModel">
@@ -82,4 +155,3 @@
     </div>
   </div>
 </div>
-

@@ -4,6 +4,8 @@ import { EmployeeService } from '../employee.service';
 import { DepartmentService } from '../department.service';
 import { Employee } from '../models/employee';
 import { Department } from '../models/department';
+import { ContractType } from '../models/enums/contract-type.enum';
+import { EmploymentStatus } from '../models/enums/employment-status.enum';
 
 @Component({
   selector: 'app-employee-form',
@@ -13,6 +15,8 @@ import { Department } from '../models/department';
 export class EmployeeFormComponent implements OnInit {
   employee: Employee = new Employee();
   departments: Department[] = [];
+  contractTypes = Object.values(ContractType); // Populate contract types
+  employmentStatuses = Object.values(EmploymentStatus); // Populate employment statuses
   isEditMode: boolean = false;
 
   constructor(
@@ -63,7 +67,7 @@ export class EmployeeFormComponent implements OnInit {
       this.createEmployee();
     }
   }
-  
+
   createEmployee() {
     this.employeeService.createEmployee(this.employee).subscribe(
       (data) => {
