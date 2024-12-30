@@ -45,6 +45,12 @@ public class EmployeeApiController {
         dto.setGender(employee.getGender());
         dto.setLocation(employee.getLocation());
         dto.setEmail(employee.getEmail());
+        dto.setLeaveDaysLeft(employee.getLeaveDaysLeft());
+        dto.setContractType(employee.getContractType() != null ? employee.getContractType().name() : null);
+        dto.setSalary(employee.getSalary());
+        dto.setHireDate(employee.getHireDate());
+        dto.setEmploymentStatus(employee.getEmploymentStatus() != null ? employee.getEmploymentStatus().name() : null);
+        dto.setPhoneNumber(employee.getPhoneNumber());
         dto.setDepartment(mapToDTO(employee.getDepartment()));
         return dto;
     }
