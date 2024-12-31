@@ -88,67 +88,39 @@ Here is a simple schema overview:
 - **Docker**: Ensure Docker is installed and running.
 - **Git**: Ensure Git is installed.
 
-### Build and Run with Docker
+### Updated Docker Compose Instructions
 
-#### 1. **Clone the Repository**
-
+#### **1. Clone the Repository**
 ```bash
 git clone https://github.com/gianni-jin/talentforce.git
 cd talentforce
 ```
 
-#### 2. **Build Docker Images**
+#### **2. Run Both Backend and Frontend with Docker Compose**
 
-1. Build the backend image:
+##### **Backend**
+1. Navigate to the `backend` directory:
    ```bash
-   docker build -t talentforce-backend ./backend
+   cd backend
    ```
-2. Build the frontend image:
+2. Use Docker Compose to build and run the backend services:
    ```bash
-   docker build -t talentforce-frontend ./frontend
-   ```
-
-#### 3. **Create and Run Containers**
-
-1. Create a Docker network:
-   ```bash
-   docker network create talentforce-network
-   ```
-2. Run the MySQL container:
-   ```bash
-   docker run --name mysql-container \
-     --network talentforce-network \
-     -e MYSQL_ROOT_PASSWORD=root \
-     -e MYSQL_DATABASE=emp_management \
-     -d mysql:8.0
-   ```
-3. Run the backend container:
-   ```bash
-   docker run --name backend-container \
-     --network talentforce-network \
-     -e SPRING_PROFILES_ACTIVE=docker \
-     -e MYSQL_HOST=mysql-container \
-     -e MYSQL_PORT=3306 \
-     -e MYSQL_DATABASE=emp_management \
-     -e MYSQL_USERNAME=root \
-     -e MYSQL_PASSWORD=root \
-     -p 8080:8080 \
-     -d talentforce-backend
-   ```
-4. Run the frontend container:
-   ```bash
-   docker run --name frontend-container \
-     --network talentforce-network \
-     -p 4200:80 \
-     -d talentforce-frontend
+   docker-compose up --build
    ```
 
-#### 4. **Access the Application**
+##### **Frontend**
+1. Open another terminal and navigate to the `frontend` directory:
+   ```bash
+   cd frontend
+   ```
+2. Use Docker Compose to build and run the frontend services:
+   ```bash
+   docker-compose up --build
+   ```
 
-- Open your browser and navigate to:
-  - **Frontend**: [http://localhost:4200](http://localhost:4200)
-  - **Backend API**: [http://localhost:8080](http://localhost:8080)
-
+#### **3. Access the Application**
+- **Frontend**: [http://localhost:4200](http://localhost:4200)
+- **Backend API**: [http://localhost:8080](http://localhost:8080)
 
 ---
 
