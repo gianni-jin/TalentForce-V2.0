@@ -9,6 +9,17 @@ services:
       - "4200:80"
     networks:
       - internalnet
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    volumes:
+      - ./src:/app/src
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - API_URL=http://localhost:8080
 
 networks:
   internalnet:
