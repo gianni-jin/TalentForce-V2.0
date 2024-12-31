@@ -66,7 +66,7 @@ Here is a simple schema overview:
 | `email`             | String        | Employee's email                    |
 | `location`          | String        | Employee's location                 |
 | `leave_days_left`   | Integer       | Remaining leave days                |
-| `contract_type`     | Enum          | Contract type (PERMANENT/TEMPORARY) |
+| `contract_type`     | Enum          | Contract type (PERMANENT/TEMPORARY/INTERNSHIP) |
 | `salary`            | BigDecimal    | Employee's salary                   |
 | `hire_date`         | String (Date) | Date of hire                        |
 | `employment_status` | Enum          | Status (ACTIVE/TERMINATED/RETIRED)  |
