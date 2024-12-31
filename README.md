@@ -8,12 +8,12 @@ An **employee and department management system** that allows organizations to ef
 
 ### Front-end
 
-- **Angular**: Used for creating dynamic, component-based UI.
+- **Typescript and Angular**: Used for creating dynamic, component-based UI.
 - **Bootstrap**: For styling and creating responsive layouts.
 
 ### Back-end
 
-- **Spring Boot**: Handles API logic, database connections, and validation.
+- **Java and Spring Boot**: Handles API logic, database connections, and validation.
 - **JPA (Hibernate)**: Provides ORM functionality.
 - **MySQL**: Relational database for storing data.
 
