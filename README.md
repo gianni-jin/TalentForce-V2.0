@@ -93,7 +93,7 @@ Here is a simple schema overview:
 #### **1. Clone the Repository**
 ```bash
 git clone https://github.com/gianni-jin/TalentForce-V2.0
-cd talentforce
+cd TalentForce-V2.0
 ```
 
 #### **2. Run Both Backend and Frontend with Docker Compose**
